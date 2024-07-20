@@ -1,0 +1,142 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background:linear-gradient(110deg,rgb(55, 30, 132),rgb(142, 22, 78));
+}
+.header{
+    margin-top: 50px;
+    color:rgb(255, 254, 254);
+    font-weight:500;
+    font-family:'Monaco',monospace;
+    opacity: 0.6;
+    text-align: center;
+}
+
+.card{
+
+    width: 90%;
+    max-width: 470px;
+    background: linear-gradient(110deg, rgb(118, 180, 238),rgb(246, 24, 202));
+    margin: 90px auto ;
+    color: #fff;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+
+}
+/*
+align item for cross axis so :vertical while justify content for main axis so horizontal 
+flex is display type allows easier adjustment (alignitem and justifycontent)
+max- width allows stretching of text to that
+linear gradient for gradient 
+margin for distance between top adn bottom
+padding is the content area
+border radius for round edges
+box sizing : border box allows whole box to adjust at once using heght and width*/
+
+.search{
+
+    width:100%;
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+}
+.search input{
+    border-radius: 30px;
+    border:0;
+    outline:0;
+    background:#ffffff;
+    color: rgb(0, 0, 0);/*text color*/
+    padding: 10px 25px;/* 10px is top bottom and 25px is left right*/
+    height: 50px;
+    flex: 1;
+    font-size: 20px;
+    margin-right: 16px;/*this means maregin from right */
+}
+
+.search button{
+
+    border: 0;
+    outline: 0;
+    background: #ffffff;
+    height: 55px;
+    width: 55px;
+    border-radius: 100%;
+    cursor:pointer;/* displays the type of cursor whent pointed on it
+    also 50% border radius is circle
+    border is border of item
+    and outline is borders outline 
+
+    */
+}
+.search button img{
+    width:20px;
+    height: auto;
+
+}
+.weather_icon{
+    width:  180px;
+    margin-top: 25px;
+}
+.weather h1{
+    font-size: 80px;
+    font-weight: 500;
+    opacity :0.9;
+}
+.weather h2{
+    font-size: 45px;
+    font-weight: 500;
+    margin-top: -10px;
+    opacity:0.9;
+}
+
+.details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top:50px;
+
+}
+.col{
+    display: flex;
+    align-items:center;
+    text-align: center;
+    justify-content: space-between;
+    opacity: 0.9;
+    
+}
+
+.col img{
+    width:53px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.humidity,.wind_speed{
+
+    font-size: 25px;
+    padding: -5px 0px;
+    margin-top: 15px;
+    
+}
+
+.status{
+
+    margin-bottom: -40px;
+    font-size: 25px;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+.weather{
+
+    display: none;
+}
+
+.error{
+
+    display:none;
+}

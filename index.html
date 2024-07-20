@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="style.css"/>
+    <h1 class="header">Welcome to Raxit's Weather App </h1>
+</head>
+<body>
+    <div class="card">
+        <div class="search">
+            <input type="text" placeholder="Enter any city name" spellcheck="false">
+            <button><img src="images/search.png"></button>
+
+        </div>
+        <div class="error">
+            <p>Invalid City Name</p>
+        </div>
+        <div class="weather">
+            <img src="images/rain.png" class="weather_icon">
+            <h3 class ="status">Clear</h3>
+            <h1 class="temp">22°C</h1>
+            <h2 class="city">New York</h2>
+            <div class = "details">
+
+                <div class="col">
+                    <img src="images/humidity.png">
+                    <div>
+                     <p class="humidity">50%</p>
+                     <p style="font-size: 21px;">Humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="images/wind.png">
+                    <div>
+                        <p class="wind_speed">23 Km/h</p>
+                        <p style="font-size: 21px;">Wind Speed</p>
+                    </div>
+                    
+                </div>
+
+            </div> 
+        </div>
+        
+
+    </div>
+    <script>
+        const apikey="263a88e6f232e20001b3717d55c2b38b";
+        const apiurl="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+        
+        const searchbox=document.querySelector(".search input");
+        const searchbtn=document.querySelector(".search button");
+        const weathericon=document.querySelector(".weather_icon");
+         
+        async function checkweather(city)
+        {
+            const response= await fetch(apiurl + city +`&appid=${apikey}`);
+            
+
+            if(response.status==404)//it checks if response is there from api if invalid then gives 404
+            {
+                document.querySelector(".error").style.display="block";//then show error
+                document.querySelector(".weather").style.display="none";//and do not show any weather detail
+            }
+            else{
+            var data=await response.json();//var is global accesible
+
+            console.log(data);
+
+            document.querySelector(".city").innerHTML= data.name;
+            document.querySelector(".temp").innerHTML=Math.round(data.main.temp) + "°C";
+            document.querySelector(".wind_speed").innerHTML=data.wind.speed +"Km/h";
+            document.querySelector(".humidity").innerHTML=data.main.humidity+"%";
+            document.querySelector(".status").innerHTML=data.weather[0].main;
+
+            if(data.weather[0].main=='Clear'){
+
+                weathericon.src="images/clear.png";
+            }
+            
+            if(data.weather[0].main=='Clouds'){
+
+              weathericon.src="images/clouds.png";
+            }
+
+            if(data.weather[0].main=='Rain'){
+            weathericon.src="images/rain.png";
+            }
+
+            
+            if(data.weather[0].main=='Drizzle'){
+
+               weathericon.src="images/drizzle.png"; 
+            }
+            
+            if(data.weather[0].main=='Mist'){
+
+            weathericon.src="images/mist.png"; 
+            }
+        
+            document.querySelector(".weather").style.display="block";
+            document.querySelector(".error").style.display="none";
+            
+        }
+    }   
+        
+        searchbtn.addEventListener("click",()=> {checkweather(searchbox.value);
+    })
+
+        
+    </script>
+</body>
+</html>
+
